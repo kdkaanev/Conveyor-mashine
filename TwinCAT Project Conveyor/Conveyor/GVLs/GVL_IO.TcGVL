@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.16">
+  <GVL Name="GVL_IO" Id="{4baea8d6-b063-491a-b9b5-ad5ff0cbac32}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	//Input
+	StartButton		:	BOOL;
+	StopButton		:	BOOL;
+	EmergencyStop	:	BOOL;
+	Reset			:	BOOL;
+	
+	SensorEntry		:	BOOL;
+	SensorExit		:	BOOL;
+	AutoMode		:	BOOL;
+	
+	
+	//Output
+	Motor			:	BOOL;
+	GreenLamp 		:	BOOL;
+	RedLamp 		:	BOOL;
+	
+	FaultLamp		:	BOOL;
+	
+	
+	
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

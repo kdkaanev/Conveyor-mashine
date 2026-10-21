@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.16">
+  <POU Name="MAIN" Id="{aff8891b-0ab8-4b58-9f64-30fb6c1d1e1a}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	Conveyor	:	FB_Conveyor;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Conveyor(
+    Start := GVL_IO.StartButton,
+    Stop := GVL_IO.StopButton,
+    EmergencyStop := GVL_IO.EmergencyStop,
+    Reset := GVL_IO.Reset,
+	AutoMode := GVL_IO.AutoMode
+	
+);
+
+GVL_IO.Motor := Conveyor.Motor;
+GVL_IO.GreenLamp := Conveyor.GreenLamp;
+GVL_IO.RedLamp := Conveyor.RedLamp;]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="37" Count="4" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="48" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
