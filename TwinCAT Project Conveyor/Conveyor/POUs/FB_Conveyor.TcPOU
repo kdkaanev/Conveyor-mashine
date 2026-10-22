@@ -25,7 +25,7 @@ END_VAR
 VAR
 	
    
-    EmergencyLatched    : BOOL;
+   
 	
 	State 	: 	E_ConveyorState ;
 	Mode	:	E_ConveyorMode;
@@ -58,15 +58,24 @@ END_VAR
 ExitTrigger(CLK := SensorExit);	
 EntryTrigger(CLK := SensorEntry);
 ModeChanged := Mode <> PreviousMode;
+
+IF NOT HandleFaults() THEN
+    IF ModeChanged THEN
+        State := E_ConveyorState.IDLE;
+
+    ELSIF Mode = E_ConveyorMode.AUTO THEN
+        RunAuto();
+
+    ELSIF Mode = E_ConveyorMode.MANUAL THEN
+        RunManual();
+    END_IF
+END_IF
+
+(*
 IF EmergencyStop THEN
-	EmergencyLatched := TRUE;
 	State := E_ConveyorState.FAULT;
 	FaultCode := E_FaultCode.FC_EMERGENCY_STOP;
-ELSIF Reset 
-	AND NOT EmergencyStop
-	AND State = E_ConveyorState.FAULT
-THEN
-	EmergencyLatched := FALSE;
+ELSIF Reset AND State = E_ConveyorState.FAULT THEN
 	State := E_ConveyorState.IDLE;
 	FaultCode := E_FaultCode.FC_NONE;
 ELSE 
@@ -75,70 +84,132 @@ ELSE
 	ELSIF ModeChanged THEN
 		State := E_ConveyorState.IDLE;
 	ELSIF Mode = E_ConveyorMode.AUTO THEN
-			IF SensorExit THEN
-				InterlockOK := FALSE;
-			ELSE
-				InterlockOK := TRUE;
-			END_IF
-			CASE State OF
-
-    			E_ConveyorState.IDLE:
-       
-					IF Start AND InterlockOK THEN
-						State := E_ConveyorState.RUNNING;
-					
-					END_IF
-
-    			E_ConveyorState.RUNNING:
-        
-					IF EntryTrigger.Q THEN
-						State := E_ConveyorState.WAIT_EXIT;
-					ELSIF Stop THEN
-						State := E_ConveyorState.IDLE;
-					END_IF
-	
-				E_ConveyorState.WAIT_EXIT:
-					IF Timerpart.Q THEN
-						State := E_ConveyorState.FAULT;
-						FaultCode := E_FaultCode.FC_EXIT_TIMEOUT;
-					ELSIF ExitTrigger.Q THEN
-						State := E_ConveyorState.RUNNING;
-						Counter := Counter + 1;
-					ELSIF Stop THEN
-						State := E_ConveyorState.IDLE;
-			
-		
-					END_IF
-
-			END_CASE;
-		
-		ELSIF Mode = E_ConveyorMode.MANUAL THEN
-			IF State <> E_ConveyorState.FAULT THEN
-				IF Start THEN
-					State := E_ConveyorState.RUNNING;
-				ELSIF NOT Start THEN
-					State:= E_ConveyorState.IDLE;
-				
-				END_IF
-			
-			END_IF
+    	RunAuto();
+	ELSIF Mode = E_ConveyorMode.MANUAL THEN
+    		RunManual();
 	END_IF
+		
 END_IF
+*)
 PreviousMode := Mode;
 Motor := (State = E_ConveyorState.RUNNING) OR (State = E_ConveyorState.WAIT_EXIT);
 GreenLamp := (State = E_ConveyorState.RUNNING) OR (State = E_ConveyorState.WAIT_EXIT);
 RedLamp := State = E_ConveyorState.IDLE;
-FaultLamp := State = E_ConveyorState.FAULT;]]></ST>
+FaultLamp := State = E_ConveyorState.FAULT;
+]]></ST>
     </Implementation>
+    <Method Name="HandleFaults" Id="{0142073b-7014-404b-b3cf-64a9e958afe6}">
+      <Declaration><![CDATA[METHOD HandleFaults : BOOL
+VAR_INPUT
+END_VAR
+
+VAR
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[HandleFaults := FALSE;
+
+IF EmergencyStop THEN
+    State := E_ConveyorState.FAULT;
+    FaultCode := E_FaultCode.FC_EMERGENCY_STOP;
+    HandleFaults := TRUE;
+
+ELSIF Reset AND State = E_ConveyorState.FAULT THEN
+    State := E_ConveyorState.IDLE;
+    FaultCode := E_FaultCode.FC_NONE;
+    HandleFaults := TRUE;
+
+ELSIF State = E_ConveyorState.FAULT THEN
+    HandleFaults := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RunAuto" Id="{1694a31d-b738-4af3-b469-e300ec7d2e2d}">
+      <Declaration><![CDATA[METHOD RunAuto
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF SensorExit THEN
+    InterlockOK := FALSE;
+ELSE
+    InterlockOK := TRUE;
+END_IF
+
+CASE State OF
+
+    E_ConveyorState.IDLE:
+        IF Start AND InterlockOK THEN
+            State := E_ConveyorState.RUNNING;
+        END_IF
+
+    E_ConveyorState.RUNNING:
+        IF EntryTrigger.Q THEN
+            State := E_ConveyorState.WAIT_EXIT;
+        ELSIF Stop THEN
+            State := E_ConveyorState.IDLE;
+        END_IF
+
+    E_ConveyorState.WAIT_EXIT:
+        IF TimerPart.Q THEN
+            State := E_ConveyorState.FAULT;
+            FaultCode := E_FaultCode.FC_EXIT_TIMEOUT;
+        ELSIF ExitTrigger.Q THEN
+            State := E_ConveyorState.RUNNING;
+            Counter := Counter + 1;
+        ELSIF Stop THEN
+            State := E_ConveyorState.IDLE;
+        END_IF
+
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RunManual" Id="{d7dffffb-616f-4be3-b62f-b75890a221ae}">
+      <Declaration><![CDATA[METHOD RunManual
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF State <> E_ConveyorState.FAULT THEN
+    IF Start THEN
+        State := E_ConveyorState.RUNNING;
+    ELSE
+        State := E_ConveyorState.IDLE;
+    END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <LineIds Name="FB_Conveyor">
-      <LineId Id="755" Count="13" />
-      <LineId Id="852" Count="2" />
-      <LineId Id="769" Count="2" />
+      <LineId Id="755" Count="8" />
+      <LineId Id="945" Count="10" />
+      <LineId Id="944" Count="0" />
+      <LineId Id="943" Count="0" />
+      <LineId Id="941" Count="0" />
+      <LineId Id="764" Count="0" />
+      <LineId Id="766" Count="2" />
+      <LineId Id="770" Count="1" />
       <LineId Id="788" Count="1" />
-      <LineId Id="792" Count="3" />
-      <LineId Id="797" Count="0" />
-      <LineId Id="800" Count="51" />
+      <LineId Id="792" Count="2" />
+      <LineId Id="901" Count="1" />
+      <LineId Id="907" Count="1" />
+      <LineId Id="846" Count="0" />
+      <LineId Id="905" Count="0" />
+      <LineId Id="847" Count="0" />
+      <LineId Id="942" Count="0" />
+      <LineId Id="848" Count="3" />
       <LineId Id="221" Count="0" />
+      <LineId Id="940" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Conveyor.HandleFaults">
+      <LineId Id="8" Count="13" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Conveyor.RunAuto">
+      <LineId Id="6" Count="30" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Conveyor.RunManual">
+      <LineId Id="6" Count="5" />
+      <LineId Id="5" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
