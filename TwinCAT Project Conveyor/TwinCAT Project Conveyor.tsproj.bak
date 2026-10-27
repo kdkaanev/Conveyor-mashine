@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.78">
-	<Project ProjectGUID="{87EDA96C-3A0C-4C74-9AEB-1703A55757BB}" TargetNetId="192.168.4.1.1.1" Target64Bit="true" ShowHideConfigurations="#x6">
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.27">
+	<Project ProjectGUID="{87EDA96C-3A0C-4C74-9AEB-1703A55757BB}" Target64Bit="true" ShowHideConfigurations="#x6">
 		<System>
 			<Tasks>
 				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
@@ -9,8 +9,8 @@
 			</Tasks>
 		</System>
 		<Plc>
-			<Project GUID="{B3E15C65-8EFA-427A-9B96-542FCBA5F584}" Name="Conveyor" PrjFilePath="Conveyor\Conveyor.plcproj" TmcFilePath="Conveyor\Conveyor.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Conveyor\Conveyor.tmc" TmcHash="{2C2280A2-5C11-513E-8CD6-2A872520AA78}">
+			<Project GUID="{B3E15C65-8EFA-427A-9B96-542FCBA5F584}" Name="Conveyor" PrjFilePath="Conveyor\Conveyor.plcproj" TmcFilePath="Conveyor\Conveyor.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{AA30877F-6294-4C4C-E8E9-D35891767BB8}" TmcPath="Conveyor\Conveyor.tmc">
 					<Name>Conveyor Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>
