@@ -1,20 +1,10 @@
 <?xml version="1.0"?>
 <TcLicenseInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2011/11/TcLicenseInfo">
 	<LicenseInfo>
-		<SystemId>{0FA91C1D-2AC8-B579-AE61-4B551A093D79}</SystemId>
-		<IssueTime>2026-10-21T05:12:00</IssueTime>
-		<ExpireTime>2026-10-29T00:00:00</ExpireTime>
-		<LicenseKey>97b88adab3189fd44773cad089cd6312dddb91d916b07c98356f18bee0dbe14d561a24e16cd11d987352aedb96dce725af9b34d203fc068456aab8a6925ea22cf681e2881f6b932111eff6a7a056badfb53a8a94a53817e9506f02c670a89f570e07a6e32e0fca974bffee746abe5eedf81cdf2be42b3dde32cefc2136ce783efb3bc1e191f689cf63d5d73a440457120360407dce21bbd0f57715c482a8e12722ebd34c7ea8aa3f0b2d18b581b25bede1fcae4be0bdb3f81a5695bbec91e24588fb49fb7e8b314eb15001c7649a19b3979e1d718d8077dffd40b0364fa623b68da8c8e6b2ea23463a3dc48d2cbf3f6565b8fd46acd6052ac4db09fb2e0aec09</LicenseKey>
-		<License>
-			<LicenseId>{A19036CF-A53B-4E3A-99FF-023EF5C4798B}</LicenseId>
-			<Name>TC3 NC PTP Axis</Name>
-			<Instances>10</Instances>
-		</License>
-		<License>
-			<LicenseId>{520DE751-9DB6-47CB-8240-BD5C466E7E64}</LicenseId>
-			<Name>TC3 NC PTP</Name>
-			<OrderNo>TF5000</OrderNo>
-		</License>
+		<SystemId>{957185BD-AD3F-5300-AED5-A4EFD1625C85}</SystemId>
+		<IssueTime>2026-10-25T08:56:00</IssueTime>
+		<ExpireTime>2026-11-02T00:00:00</ExpireTime>
+		<LicenseKey>3e16542d5fd1e56628a816fef051f5676a64cf692dc69552ef58f9f679d053eaacf7af777776245fffaf3203895d16ef01b7c8e4c13f88362b088e47d92d8ba0968d9fb409d77ca1d0eacdf485d70693f2f2e1d08f0055de26b5fd32f4923d6fe90c5781349e3be1d013e74bbda6b1240d7c4f8c30a2e5919e5af25527cfd050e671daf512a778c812767d3bc0283c24888cfa417de156b89af5d05fffc138e0aafb16c27c3cbe40617d29ff420b0aac946cc6f71ef0c4db5947fbe5f2656bbef58e51b31d30074f51421518a9268d1e909f0fb882e22a6cc8f5c5b2d90ae17e17d83ab42aff700c821c06bd49c4bfcdb81102cb2bb4b51c8351181c103be993</LicenseKey>
 		<License>
 			<LicenseId>{4C256767-E6E6-4AF5-BD68-9F7ABAD0C200}</LicenseId>
 			<Name>TC3 ADS</Name>
