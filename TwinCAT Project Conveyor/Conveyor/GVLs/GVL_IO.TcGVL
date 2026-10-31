@@ -27,6 +27,7 @@ VAR_GLOBAL
 	FaultText : STRING(50) := 'NO FAULT';
 	ModeText  : STRING(50) ;
 	
+	Counter : UDINT := 0;
 	
 	Mode : E_ConveyorMode := E_ConveyorMode.AUTO;
 	

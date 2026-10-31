@@ -12,6 +12,7 @@ VAR
 	
 	
 	
+
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -21,8 +22,14 @@ END_VAR
     EmergencyStop := GVL_IO.EmergencyStop,
     Reset := GVL_IO.Reset,
 	AutoMode := GVL_IO.AutoMode,
-	Mode := GVL_IO.Mode
+	Mode := GVL_IO.Mode,
+	
+	SensorEntry := GVL_IO.SensorEntry,
+	SensorExit := GVL_IO.SensorExit,
+	
+	
 );
+GVL_IO.Counter := Conveyor.Counter;
 
 GVL_IO.Motor := Conveyor.Motor;
 GVL_IO.MotorStopped := NOT Conveyor.Motor;

@@ -25,7 +25,7 @@ VAR_OUTPUT
 	
 	FaultCode : E_FaultCode := E_FaultCode.FC_NONE;
 	
-	
+	Counter 		: 	UDINT := 0;
 	
 END_VAR
 VAR
@@ -44,7 +44,7 @@ VAR
 	TimerPart		:	TON;
 	ExitTrigger		:	R_TRIG;
 	EntryTrigger 	: 	R_TRIG;
-	Counter 		: 	UDINT := 0;
+	
 	
 	InterlockOK 	: 	BOOL;
 	

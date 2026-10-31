@@ -98,7 +98,7 @@
     "DISCOVERY": 1,
     "ENDPOINTS": [
         "http://127.0.0.1:13000",
-        "http://127.0.0.1:3000"
+        "http://127.0.0.1:3001"
     ],
     "ETAGENABLED": true,
     "EXTENSIONS": {
@@ -961,6 +961,26 @@
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::GVL_IO::Reset",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_IO.SensorEntry": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_IO::SensorEntry",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_IO.SensorExit": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_IO::SensorExit",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
@@ -4067,6 +4087,8 @@
                 "ADS.PLC1.GVL_IO.MotorStopped": 3,
                 "ADS.PLC1.GVL_IO.RedLamp": 3,
                 "ADS.PLC1.GVL_IO.Reset": 3,
+                "ADS.PLC1.GVL_IO.SensorEntry": 3,
+                "ADS.PLC1.GVL_IO.SensorExit": 3,
                 "ADS.PLC1.GVL_IO.StartButton": 3,
                 "ADS.PLC1.GVL_IO.StopButton": 3,
                 "ChangeUserSettings": 3,
